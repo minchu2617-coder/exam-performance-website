@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Exam Performance</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Exam Performance Dataset</h2>
+
+<input type="file" id="csvFile" accept=".csv"><br><br>
+
+<table id="table"></table>
+
+<script>
+document.getElementById('csvFile').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        const text = event.target.result;
+        const rows = text.split("\n");
+        let table = document.getElementById("table");
+        table.innerHTML = "";
+
+        rows.forEach(row => {
+            let cols = row.split(",");
+            let tr = document.createElement("tr");
+
+            cols.forEach(col => {
+                let td = document.createElement("td");
+                td.innerText = col;
+                tr.appendChild(td);
+            });
+
+            table.appendChild(tr);
+        });
+    };
+
+    reader.readAsText(file);
+});
+</script>
+
+</body>
+</html>

@@ -1,63 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Exam Performance</title>
+    <title>Login - Exam Performance</title>
+
     <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            background-color: #f4f4f4;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
         }
-        table {
-            margin: auto;
-            border-collapse: collapse;
-            background: white;
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: linear-gradient(135deg,#667eea,#764ba2);
         }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
+
+        .login-box{
+            background:white;
+            padding:40px;
+            border-radius:12px;
+            width:320px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
         }
-        th {
-            background: #4CAF50;
-            color: white;
+
+        .login-box h2{
+            margin-bottom:20px;
+            color:#333;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            border:1px solid #ccc;
+            border-radius:6px;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            background:#667eea;
+            color:white;
+            border:none;
+            border-radius:6px;
+            font-size:16px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#5a67d8;
+        }
+
+        .subtitle{
+            font-size:14px;
+            color:gray;
+            margin-bottom:20px;
         }
     </style>
 </head>
+
 <body>
 
-<h2>Student Exam Performance Dataset</h2>
+<div class="login-box">
+    <h2>Welcome 👋</h2>
+    <p class="subtitle">Student Exam Performance System</p>
 
-<input type="file" id="csvFile" accept=".csv"><br><br>
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
 
-<table id="table"></table>
+    <button onclick="login()">Login</button>
+</div>
 
 <script>
-document.getElementById('csvFile').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function(event) {
-        const text = event.target.result;
-        const rows = text.split("\n");
-        let table = document.getElementById("table");
-        table.innerHTML = "";
-
-        rows.forEach(row => {
-            let cols = row.split(",");
-            let tr = document.createElement("tr");
-
-            cols.forEach(col => {
-                let td = document.createElement("td");
-                td.innerText = col;
-                tr.appendChild(td);
-            });
-
-            table.appendChild(tr);
-        });
-    };
-
-    reader.readAsText(file);
-});
+function login(){
+    window.location.href="dashboard.html";
+}
 </script>
 
 </body>
